@@ -1,0 +1,1 @@
+export type IRenderFunc<A = any, B = any, C = any> = (a?: A, b?: B, c?: C) => React.ReactNode;

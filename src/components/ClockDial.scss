@@ -1,0 +1,19 @@
+.clock-dial-root {
+    border: 3px solid darkslategrey;
+    border-radius: 250px;
+    height: 100%;
+    width: 100%;
+    box-shadow: 10px 8px 11px 6px #ccc;
+    box-sizing: border-box;
+    background: url("https://tse1-mm.cn.bing.net/th/id/OIP.ttB9h6PCfX2ClFxaufBMzQHaHa?o=6&pid=Api&rs=1");
+    background-repeat: round;
+    &::after {
+        content: "";
+        position: absolute;
+        top: calc(50% - 5px);
+        left: calc(50% - 5px);
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+    }
+}

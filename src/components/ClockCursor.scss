@@ -1,0 +1,14 @@
+.clock-cursor-wrapper {
+    height: 45%;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: rotate(0);
+    transform-origin: bottom;
+    .clock-cursor-root {
+        height: 100%;
+        width: 3px;
+        background-color: darkred;
+        border-radius: 2px;
+    }
+}

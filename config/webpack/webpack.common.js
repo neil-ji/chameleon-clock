@@ -1,0 +1,40 @@
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+    entry: {
+        magicBlog: path.resolve(__dirname, '../../src/index.test.ts')
+    },
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, '../../dist')
+    },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.(sc|sa|c)ss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ],
+                include: path.resolve(__dirname, '../../src')
+            },
+        ]
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.jsx', '.js', '.scss', '.css']
+    },
+    plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, '../../static/index.html')
+        }),
+    ]
+};
