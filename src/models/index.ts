@@ -1,1 +1,1 @@
-export type IRenderFunc<A = any, B = any, C = any> = (a?: A, b?: B, c?: C) => React.ReactNode;
+export type IRenderFunc<A = unknown, B = unknown, C = unknown> = (a?: A, b?: B, c?: C) => React.ReactNode;
