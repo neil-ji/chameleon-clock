@@ -5,9 +5,9 @@ import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import { eslint } from 'rollup-plugin-eslint';
+import sass from 'rollup-plugin-sass';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import pkg from './package.json';
-import sass from 'rollup-plugin-sass';
 
 const paths = {
     input: path.join(__dirname, '/src/index.ts'),

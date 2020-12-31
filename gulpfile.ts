@@ -11,7 +11,7 @@ import {
 import rollupConfig from './rollup.config'
 
 interface TaskFunc {
-    (cb: Function): void
+    (cb: () => void): void
 }
 
 const log = {

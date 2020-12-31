@@ -5,10 +5,9 @@
     },
     "exclude": [
         "node_modules",
-        ".eslintrc.js"
+        "**/*.js"
     ],
     "include": [
-        "**/*.ts",
-        "**/*.js"
+        "**/*.ts"
     ]
 }
