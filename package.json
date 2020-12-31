@@ -14,7 +14,10 @@
   "keywords": [
     "react",
     "clock",
-    "watch"
+    "watch",
+    "typescript",
+    "custom",
+    "component"
   ],
   "repository": {
     "type": "git",

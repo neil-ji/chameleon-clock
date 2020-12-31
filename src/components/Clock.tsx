@@ -4,17 +4,30 @@ import { ClockDial } from "./ClockDial";
 import { HOUR_TO_ANGLE, MINUTE_TO_ANGLE, SECOND_TO_ANGLE } from "../constants";
 import { ClockCursorSize } from "../enum";
 import "./Clock.scss";
+import { IRenderFunc } from "..";
 
 export interface IClockProps {
     date?: Date;
+    className?: string;
     onChange?: (newDate: Date) => void;
+    onRenderDial?: IRenderFunc;
+    onRenderCursor?: IRenderFunc;
+    onRenderHourCursor?: IRenderFunc;
+    onRenderMinuteCursor?: IRenderFunc;
+    onRenderSecondCursor?: IRenderFunc;
 }
 
 // tslint:disable-next-line: variable-name
 export const Clock: React.FunctionComponent<IClockProps> = (props) => {
     const {
         date,
+        className,
         onChange,
+        onRenderDial,
+        onRenderCursor,
+        onRenderHourCursor,
+        onRenderMinuteCursor,
+        onRenderSecondCursor,
     } = props;
 
     const [seconds, setSeconds] = React.useState<number>(date?.getSeconds() || 0);
@@ -39,10 +52,22 @@ export const Clock: React.FunctionComponent<IClockProps> = (props) => {
         };
     }, [date, hours, minutes, onChange, seconds]);
 
-    return <div className="clock-root">
-        <ClockDial />
-        <ClockCursor angle={seconds * SECOND_TO_ANGLE} size={ClockCursorSize.Large} />
-        <ClockCursor angle={minutes * MINUTE_TO_ANGLE} size={ClockCursorSize.Middle} />
-        <ClockCursor angle={hours * HOUR_TO_ANGLE} size={ClockCursorSize.Small} />
+    return <div className={`clock-root ${className || ""}`}>
+        <ClockDial onRenderScale={onRenderDial} />
+        <ClockCursor
+            angle={seconds * SECOND_TO_ANGLE}
+            size={ClockCursorSize.Large}
+            onRenderCursor={onRenderHourCursor || onRenderCursor}
+        />
+        <ClockCursor
+            angle={minutes * MINUTE_TO_ANGLE}
+            size={ClockCursorSize.Middle}
+            onRenderCursor={onRenderMinuteCursor || onRenderCursor}
+        />
+        <ClockCursor
+            angle={hours * HOUR_TO_ANGLE}
+            size={ClockCursorSize.Small}
+            onRenderCursor={onRenderSecondCursor || onRenderCursor}
+        />
     </div>;
 };
