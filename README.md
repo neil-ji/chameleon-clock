@@ -1,5 +1,10 @@
 # chameleon-clock
 
+[![npm version](https://img.shields.io/npm/v/chameleon-clock)](https://www.npmjs.com/package/chameleon-clock)
+![total code lines](https://img.shields.io/tokei/lines/github/neil-ji/chameleon-clock)
+![npm minified size](https://img.shields.io/bundlephobia/min/chameleon-clock)
+![github repository size](https://img.shields.io/github/repo-size/neil-ji/chameleon-clock)
+
 ![](https://ftp.bmp.ovh/imgs/2020/12/ea20994f740d1f43.png)
 
 An efficient clock component build by react, and supports extend its dial and pointer, you can create a clock component in `any shape/style` with code just several lines.
