@@ -47,12 +47,89 @@ const MyComponent = (props) => {
 
 It is recommended to use `typescript`, and all of the following code examples will write by `typescript`( Why not have a try? :D ).
 
+## Custom Styles
+
+Change clock's style by passing an object maked up by `className` to it, for example.
+
+```ts
+const MyComponent: React.FunctionComponent<IMyComponentProps> = (props) => {
+
+    return <Clock
+
+        styles={{
+
+            root: "my-style-clock-root",
+
+            cursor: "my-style-clock-cursor",
+
+            dial: "my-style-clock-dial"
+
+        }}
+
+        // ... Other props
+
+    />;
+
+}
+```
+
+`styles.cursor` is a `className` of every cursor by default, if you assign `styles.hour`/ `styles.minute`/ `styles.second` a `className`, hour/min/sec cursor's style will been rewrited. 
+
+```ts
+const MyComponent: React.FunctionComponent<IMyComponentProps> = (props) => {
+
+    return <Clock
+
+        styles={{
+
+            root: "my-style-clock-root",
+            
+            // Style of hour-cursor will been decide on className `my-style-clock-cursor-hour`
+            hour: "my-style-clock-cursor-hour",
+            
+            // Style of other-cursors will been decide on className `my-style-clock-cursor`
+            cursor: "my-style-clock-cursor",
+
+            dial: "my-style-clock-dial",
+            
+        }}
+
+        // ... Other props
+
+    />;
+
+}
+```
+
+Tips with `FunctionComponent`, use `React.useMemo` to cache the styles object will reduce render time. 
+
+```ts
+const MyComponent: React.FunctionComponent<IMyComponentProps> = (props) => {
+
+    const styles: IClockStyles = React.useMemo(() => {
+
+        return {
+
+            // ...
+
+        };
+
+    });
+
+    return <Clock
+
+        styles={styles}
+
+        // ... Other props
+
+    />;
+
+}
+```
+
 ## Custom Render
 
 `chameleon-clock` support custom render, you just need to offer a render function, by simpler words, just change several css attributes like under examples.
 
-in progress...
-
 ## API
 
-in progress...
