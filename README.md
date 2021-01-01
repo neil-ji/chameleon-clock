@@ -54,7 +54,7 @@ It is recommended to use `typescript`, and all of the following code examples wi
 
 ## Custom Styles
 
-Change clock's style by passing an object maked up by `className` to it, for example.
+Change clock's style by passing an object maked up by `className` to it.
 
 ```ts
 const MyComponent: React.FunctionComponent<IMyComponentProps> = (props) => {
@@ -132,9 +132,81 @@ const MyComponent: React.FunctionComponent<IMyComponentProps> = (props) => {
 }
 ```
 
-## Custom Render
+## Custom Renderer
 
-`chameleon-clock` support custom render, you just need to offer a render function, by simpler words, just change several css attributes like under examples.
+If `custom styles` cannot satisfy your demand, make a trial of `custom renderer`, it allows you to rewrite clock-dial and clock-cursor component, see the details at [API](https://github.com/neil-ji/chameleon-clock/edit/master/README.md#API).
 
 ## API
+
+### Props
+
+If provided, additional class name to provide on the root element.
+```ts
+className ?: string;
+```
+
+If provided, component will adjust cursor position as specified date.
+```ts
+date ?: Date;
+```
+
+Custom styling for individual elements within the Clock DOM.
+```ts
+styles ?: IClockStyles;
+```
+
+Callback for when the date changes.
+```ts
+onChange ?: (newDate: Date) => void;
+```
+
+Custom renderer for the clock-dial.
+```ts
+onRenderDial ?: IRenderFunc;
+```
+
+Custom renderer for the all clock-cursors.
+```ts
+onRenderCursor ?: IRenderFunc;
+```
+
+Custom renderer for the hour-cursor.
+```ts
+onRenderHourCursor ?: IRenderFunc;
+```
+
+Custom renderer for the minute-cursor.
+```ts
+onRenderMinuteCursor ?: IRenderFunc;
+```
+
+Custom renderer for the second-cursor.
+```ts
+onRenderSecondCursor ?: IRenderFunc;
+```
+
+### Typing
+
+```ts
+type IRenderFunc<A = unknown, B = unknown, C = unknown> = (a?: A, b?: B, c?: C) => React.ReactNode;
+```
+
+```ts
+interface IClockStyles {
+    root?: string;
+    dial?: string;
+    cursor?: string;
+    hour?: string;
+    minute?: string;
+    second?: string;
+}
+```
+
+```ts
+enum ClockCursorSize {
+    Small = 0,
+    Middle = 1,
+    Large = 2
+}
+```
 
