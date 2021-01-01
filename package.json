@@ -1,7 +1,7 @@
 {
   "name": "chameleon-clock",
   "version": "1.0.0",
-  "description": "",
+  "description": "An efficient clock component build by react, and supports extend its dial and pointer",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
   "typings": "lib/index.d.js",
