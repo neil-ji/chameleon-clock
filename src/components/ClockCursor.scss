@@ -1,11 +1,11 @@
-.clock-cursor-wrapper {
+.clock-cursor-root {
     height: 45%;
     position: absolute;
     top: 5%;
     left: 50%;
     transform: rotate(0);
     transform-origin: bottom;
-    .clock-cursor-root {
+    .clock-cursor {
         height: 100%;
         width: 3px;
         background-color: darkred;

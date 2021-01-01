@@ -5,10 +5,15 @@ import { HOUR_TO_ANGLE, MINUTE_TO_ANGLE, SECOND_TO_ANGLE } from "../constants";
 import { ClockCursorSize } from "../enum";
 import "./Clock.scss";
 import { IRenderFunc } from "..";
+import { IClockCursorStyles, IClockStyles } from "../models";
 
 export interface IClockProps {
-    date?: Date;
     className?: string;
+    date?: Date;
+    styles?: IClockStyles;
+    hourCursorStyles?: IClockCursorStyles;
+    minuteCursorStyles?: IClockCursorStyles;
+    secondCursorStyles?: IClockCursorStyles;
     onChange?: (newDate: Date) => void;
     onRenderDial?: IRenderFunc;
     onRenderCursor?: IRenderFunc;
@@ -20,8 +25,12 @@ export interface IClockProps {
 // tslint:disable-next-line: variable-name
 export const Clock: React.FunctionComponent<IClockProps> = (props) => {
     const {
-        date,
         className,
+        date,
+        hourCursorStyles,
+        secondCursorStyles,
+        styles,
+        minuteCursorStyles,
         onChange,
         onRenderDial,
         onRenderCursor,
@@ -52,21 +61,27 @@ export const Clock: React.FunctionComponent<IClockProps> = (props) => {
         };
     }, [date, hours, minutes, onChange, seconds]);
 
-    return <div className={`clock-root ${className || ""}`}>
-        <ClockDial onRenderScale={onRenderDial} />
+    return <div className={`clock-root ${className || styles?.root || ""}`}>
+        <ClockDial
+            styles={styles}
+            onRenderScale={onRenderDial}
+        />
         <ClockCursor
             angle={seconds * SECOND_TO_ANGLE}
             size={ClockCursorSize.Large}
+            styles={secondCursorStyles || styles?.cursor}
             onRenderCursor={onRenderHourCursor || onRenderCursor}
         />
         <ClockCursor
             angle={minutes * MINUTE_TO_ANGLE}
             size={ClockCursorSize.Middle}
+            styles={minuteCursorStyles || styles?.cursor}
             onRenderCursor={onRenderMinuteCursor || onRenderCursor}
         />
         <ClockCursor
             angle={hours * HOUR_TO_ANGLE}
             size={ClockCursorSize.Small}
+            styles={hourCursorStyles || styles?.cursor}
             onRenderCursor={onRenderSecondCursor || onRenderCursor}
         />
     </div>;

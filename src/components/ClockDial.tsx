@@ -1,14 +1,16 @@
 import React from "react";
 import "./ClockDial.scss";
-import { IRenderFunc } from "../models";
+import { IClockDialStyles, IRenderFunc } from "../models";
 
 export interface IClockDialProps {
+    styles?: IClockDialStyles;
     onRenderScale?: IRenderFunc;
 }
 
 // tslint:disable-next-line: variable-name
 export const ClockDial: React.FunctionComponent<IClockDialProps> = (props) => {
     const {
+        styles,
         onRenderScale,
     } = props;
 
@@ -16,7 +18,7 @@ export const ClockDial: React.FunctionComponent<IClockDialProps> = (props) => {
         if (onRenderScale) {
             return onRenderScale();
         }
-        return <div className="clock-dial-root" />;
+        return <div className={`clock-dial-root ${styles?.root}`} />;
     }, [onRenderScale]);
 
     return <>{renderFunc()}</>;

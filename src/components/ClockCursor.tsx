@@ -1,20 +1,22 @@
 import React from "react";
 import { ClockCursorSize } from "../enum";
-import { IRenderFunc } from "../models";
+import { IClockCursorStyles, IRenderFunc } from "../models";
 import "./ClockCursor.scss";
 
 export interface IClockCursorProps {
-    onRenderCursor?: IRenderFunc;
     angle: number;
     size?: ClockCursorSize;
+    styles?: IClockCursorStyles;
+    onRenderCursor?: IRenderFunc;
 }
 
 // tslint:disable-next-line: variable-name
 export const ClockCursor: React.FunctionComponent<IClockCursorProps> = (props) => {
     const {
         size,
+        styles,
         angle,
-        onRenderCursor
+        onRenderCursor,
     } = props;
 
 
@@ -42,9 +44,13 @@ export const ClockCursor: React.FunctionComponent<IClockCursorProps> = (props) =
         }
     }, [size]);
 
-    const cursor = React.useMemo(() => onRenderCursor ? onRenderCursor() : <div className="clock-cursor-root" />, [onRenderCursor]);
+    const cursor = React.useMemo(() => {
+        return onRenderCursor
+            ? onRenderCursor()
+            : <div className={`clock-cursor ${styles?.cursor}`} />;
+    }, [onRenderCursor, styles?.cursor]);
 
-    return <div className="clock-cursor-wrapper" style={{ transform: `rotate(${angle || 0}deg)`, ...style }}>
+    return <div className={`clock-cursor-root ${styles?.root}`} style={{ transform: `rotate(${angle || 0}deg)`, ...style }}>
         {cursor}
     </div>;
 };
