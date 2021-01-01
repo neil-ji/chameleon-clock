@@ -15,13 +15,19 @@ It already expose a built-in typing definition for `typescript`, no need to inst
 
 ```ts
 import { Clock } from "chameleon-clock";
+
 export interface IMyComponentProps {
-    msg: string;
+
+    // ... Your props definition
+    
 }
 
 const MyComponent: React.FunctionComponent<IMyComponentProps> = (props) => {
+
     const [date, setDate] = React.useState<Date>(new Date());
+    
     return <Clock date={new Date()} onChange={setDate} />;
+    
 }
 ```
 
@@ -31,8 +37,11 @@ It is simple too in `javascript`.
 const { Clock } = require("chameleon-clock");
 
 const MyComponent = (props) => {
+
     const [date, setDate] = React.useState(new Date());
+    
     return <Clock date={ new Date() } onChange = { setDate } />;
+    
 }
 ```
 
